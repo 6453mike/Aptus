@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Settings;
+using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Blocks
 {
     /// <summary>
     ///     Responsible for block rotation in

@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Blocks;
+using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Controllers
 {
     public class GameController : MonoBehaviour
     {

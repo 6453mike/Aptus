@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Blocks
 {
     /// <summary>
     ///     A loose block is a shape where the cubes that it is

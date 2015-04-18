@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Settings;
+using Assets.Scripts.Utilities;
+using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Blocks
 {
     /// <summary>
     ///     Provides a generic interface that can build
@@ -16,7 +18,7 @@ namespace Assets.Scripts
 
         protected BlockBuilder()
         {
-            UnitCube = Resources.Load("UnitCube");
+            UnitCube = ResourceLoader.Load(Paths.UnitCube);
         }
 
         /// <summary>
