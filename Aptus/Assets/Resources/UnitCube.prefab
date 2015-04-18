@@ -12,7 +12,7 @@ GameObject:
   - 65: {fileID: 6593316}
   - 23: {fileID: 2360460}
   m_Layer: 0
-  m_Name: HalfUnitCube
+  m_Name: UnitCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

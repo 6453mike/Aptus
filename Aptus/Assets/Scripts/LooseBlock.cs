@@ -10,25 +10,50 @@ namespace Assets.Scripts
     /// </summary>
     public class LooseBlock : BlockBuilder
     {
-        public LooseBlock(float cubeScale = 1.0f)
-            : base(cubeScale)
+        public override GameObject Build(Vector3 position, float cubeSize, int numberOfCubes)
         {
-        }
+            var newBlock = new GameObject("Block");
 
-        public override void Build(Vector3 position, int numberOfCubes)
-        {
-            var currentBlockPosition = position;
+            // We keep track of the current cube position (the most recently
+            // created cube) so that we can construct a shape that is not disconnected
+            var currentCubePosition = position;
+            var totalPosition = Vector3.zero;
             for (var i = 0; i < numberOfCubes; i++)
             {
                 Vector3 tempPosition;
                 do
                 {
-                    tempPosition = GetRandomOrthogonalBlockPosition(currentBlockPosition);
-                } while (IsBlockAtPosition((tempPosition)));
+                    // Get a random position adjacent to the current cube
+                    tempPosition = GetRandomOrthogonalBlockPosition(currentCubePosition, cubeSize);
+                } while (IsCubeAtPosition((tempPosition)));
 
-                Object.Instantiate(UnitCube, tempPosition, Quaternion.identity);
-                currentBlockPosition = tempPosition;
+                var go = (GameObject) Object.Instantiate(UnitCube, tempPosition, Quaternion.identity);
+                go.transform.parent = newBlock.transform;
+                go.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
+
+                currentCubePosition = tempPosition;
+
+                // We accumulate the positions of the cubes so that we can
+                // find an average position (centroid) of the block
+                totalPosition += tempPosition;
             }
+
+            // The average position of all of the cubes gives us the
+            // center of shape that was built
+            var averagePosition = totalPosition/numberOfCubes;
+
+            // Subtracting the average position on all cubes, brings the shape
+            // as a whole to the origin
+            var cubes = newBlock.GetComponentsInChildren<Transform>();
+            foreach (var cube in cubes)
+            {
+                cube.position -= averagePosition;
+            }
+
+            // We set the block's position to the specified position
+            newBlock.transform.position = position;
+
+            return newBlock;
         }
     }
 }
