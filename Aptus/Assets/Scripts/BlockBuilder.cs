@@ -28,10 +28,6 @@ namespace Assets.Scripts
         /// <returns>The created block game-object.</returns>
         public abstract GameObject Build(Vector3 position, float cubeSize, int numberOfCubes);
 
-        protected void CreateCube(Vector3 position)
-        {
-        }
-
         /// <summary>
         ///     Gets a random one of the six possible orthogonal direction.
         /// </summary>
