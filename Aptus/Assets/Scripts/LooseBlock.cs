@@ -12,7 +12,7 @@ namespace Assets.Scripts
     {
         public override GameObject Build(Vector3 position, float cubeSize, int numberOfCubes)
         {
-            var newBlock = new GameObject("Block");
+            var block = new GameObject("Block");
 
             // We keep track of the current cube position (the most recently
             // created cube) so that we can construct a shape that is not disconnected
@@ -28,7 +28,7 @@ namespace Assets.Scripts
                 } while (IsCubeAtPosition((tempPosition)));
 
                 var go = (GameObject) Object.Instantiate(UnitCube, tempPosition, Quaternion.identity);
-                go.transform.parent = newBlock.transform;
+                go.transform.parent = block.transform;
                 go.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
 
                 currentCubePosition = tempPosition;
@@ -44,16 +44,16 @@ namespace Assets.Scripts
 
             // Subtracting the average position on all cubes, brings the shape
             // as a whole to the origin
-            var cubes = newBlock.GetComponentsInChildren<Transform>();
+            var cubes = block.GetComponentsInChildren<Transform>();
             foreach (var cube in cubes)
             {
                 cube.position -= averagePosition;
             }
 
             // We set the block's position to the specified position
-            newBlock.transform.position = position;
+            block.transform.position = position;
 
-            return newBlock;
+            return block;
         }
     }
 }
