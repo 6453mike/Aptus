@@ -5,6 +5,7 @@
     /// </summary>
     public class Paths
     {
-        public static string UnitCube = "Prefabs/UnitCube";
+        public static string BlockUnitCube = "Prefabs/BlockUnitCube";
+        public static string WallUnitCube = "Prefabs/WallUnitCube";
     }
 }

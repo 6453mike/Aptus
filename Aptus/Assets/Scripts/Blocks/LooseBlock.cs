@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿#region
+
+using Assets.Scripts.Utilities;
+using UnityEngine;
+
+#endregion
 
 namespace Assets.Scripts.Blocks
 {
@@ -10,13 +15,14 @@ namespace Assets.Scripts.Blocks
     /// </summary>
     public class LooseBlock : BlockBuilder
     {
-        public override GameObject Build(Vector3 position, float cubeSize, int numberOfCubes)
+        public override GameObject Build(Vector3 position, int numberOfCubes, float unitScale = 1.0f)
         {
             var block = new GameObject("Block");
 
             // We keep track of the current cube position (the most recently
             // created cube) so that we can construct a shape that is not disconnected
             var currentCubePosition = position;
+
             var totalPosition = Vector3.zero;
             for (var i = 0; i < numberOfCubes; i++)
             {
@@ -24,12 +30,12 @@ namespace Assets.Scripts.Blocks
                 do
                 {
                     // Get a random position adjacent to the current cube
-                    tempPosition = GetRandomOrthogonalBlockPosition(currentCubePosition, cubeSize);
+                    tempPosition = GetRandomOrthogonalBlockPosition(currentCubePosition, unitScale);
                 } while (IsCubeAtPosition((tempPosition)));
 
                 var go = (GameObject) Object.Instantiate(UnitCube, tempPosition, Quaternion.identity);
                 go.transform.parent = block.transform;
-                go.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
+                go.transform.localScale = new Vector3(unitScale, unitScale, unitScale);
 
                 currentCubePosition = tempPosition;
 
@@ -42,12 +48,16 @@ namespace Assets.Scripts.Blocks
             // center of shape that was built
             var averagePosition = totalPosition/numberOfCubes;
 
-            // Subtracting the average position on all cubes, brings the shape
+            // Rounding to the nearest multiple of the scale will ensure that the block's center
+            // is placed at the center of the unit cube that is closest to the average position
+            var centerPosition = Helper.RoundPositionToNearestMultiple(averagePosition, unitScale);
+
+            // Subtracting the center position on all cubes, brings the shape
             // as a whole to the origin
             var cubes = block.GetComponentsInChildren<Transform>();
             foreach (var cube in cubes)
             {
-                cube.position -= averagePosition;
+                cube.position -= centerPosition;
             }
 
             // We set the block's position to the specified position

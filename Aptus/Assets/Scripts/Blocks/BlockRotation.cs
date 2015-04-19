@@ -9,7 +9,7 @@ namespace Assets.Scripts.Blocks
     /// </summary>
     public class BlockRotation : MonoBehaviour
     {
-        private const float RotationSpeed = 20.0f;
+        private const float RotationSpeed = 10.0f;
 
         // The amount in degrees that a block will
         // rotate per rotation request

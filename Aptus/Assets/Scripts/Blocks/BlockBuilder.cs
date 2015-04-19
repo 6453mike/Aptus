@@ -18,17 +18,17 @@ namespace Assets.Scripts.Blocks
 
         protected BlockBuilder()
         {
-            UnitCube = ResourceLoader.Load(Paths.UnitCube);
+            UnitCube = ResourceLoader.Load(Paths.BlockUnitCube);
         }
 
         /// <summary>
         ///     Builds a block at a position with the specified number of cubes.
         /// </summary>
         /// <param name="position">Where the block will be built.</param>
-        /// <param name="cubeSize">The size of a cube.</param>
         /// <param name="numberOfCubes">The number of cubes to build the block with.</param>
+        /// <param name="unitScale">The scale of a cube.</param>
         /// <returns>The created block game-object.</returns>
-        public abstract GameObject Build(Vector3 position, float cubeSize, int numberOfCubes);
+        public abstract GameObject Build(Vector3 position, int numberOfCubes, float unitScale = 1.0f);
 
         /// <summary>
         ///     Gets a random one of the six possible orthogonal direction.
@@ -47,11 +47,11 @@ namespace Assets.Scripts.Blocks
         ///     Gets a random position next to and orthogonal to the provided position.
         /// </summary>
         /// <param name="position">The position of which an orthogonal position will be returned.</param>
-        /// <param name="cubeSize">The size of a cube.</param>
+        /// <param name="unitScale">The scale of a cube.</param>
         /// <returns>An orthogonal position.</returns>
-        protected Vector3 GetRandomOrthogonalBlockPosition(Vector3 position, float cubeSize)
+        protected Vector3 GetRandomOrthogonalBlockPosition(Vector3 position, float unitScale)
         {
-            return position + cubeSize*GetRandomOrthogonalDirection();
+            return position + unitScale*GetRandomOrthogonalDirection();
         }
 
         protected bool IsCubeAtPosition(Vector3 position)
