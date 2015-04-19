@@ -14,7 +14,7 @@ namespace Assets.Scripts.Blocks
                 GetComponent<Rigidbody>()
                     .MovePosition(transform.position + MovementSpeed*Vector3.forward*Time.deltaTime);
             }
-            if (Input.GetKey(KeyCode.K))
+            else if (Input.GetKey(KeyCode.K))
             {
                 GetComponent<Rigidbody>().MovePosition(transform.position + MovementSpeed*Vector3.back*Time.deltaTime);
             }

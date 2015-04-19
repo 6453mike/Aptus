@@ -198,6 +198,7 @@ GameObject:
   - 92: {fileID: 1787871785}
   - 124: {fileID: 1787871784}
   - 81: {fileID: 1787871783}
+  - 114: {fileID: 1787871788}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -264,9 +265,20 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1787871782}
-  m_LocalRotation: {x: .0436193943, y: 0, z: 0, w: .999048233}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: .113203228, y: 0, z: 0, w: .993571877}
+  m_LocalPosition: {x: 0, y: 2.70000005, z: -9.85000038}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1787871788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1787871782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87901911dd5b336409eff1e00b825fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

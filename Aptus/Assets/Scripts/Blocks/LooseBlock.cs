@@ -30,7 +30,7 @@ namespace Assets.Scripts.Blocks
                 do
                 {
                     // Get a random position adjacent to the current cube
-                    tempPosition = GetRandomOrthogonalBlockPosition(currentCubePosition, unitScale);
+                    tempPosition = Helper.GetRandomOrthogonalBlockPosition(currentCubePosition, unitScale);
                 } while (IsCubeAtPosition((tempPosition)));
 
                 var go = (GameObject) Object.Instantiate(UnitCube, tempPosition, Quaternion.identity);

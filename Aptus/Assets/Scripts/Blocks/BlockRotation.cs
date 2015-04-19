@@ -15,7 +15,12 @@ namespace Assets.Scripts.Blocks
         // rotate per rotation request
         private const float RotationStep = 90.0f;
 
-        private Quaternion _rotation = Quaternion.identity;
+        private Quaternion _rotation;
+
+        private void Start()
+        {
+            _rotation = transform.rotation;
+        }
 
         private void Update()
         {
