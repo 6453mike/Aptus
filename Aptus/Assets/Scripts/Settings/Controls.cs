@@ -11,5 +11,7 @@
         public static string Down = "Down";
         public static string RollLeft = "RollLeft";
         public static string RollRight = "RollRight";
+        public static string MouseX = "MouseX";
+        public static string MouseY = "MouseY";
     }
 }
